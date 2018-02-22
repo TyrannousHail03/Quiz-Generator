@@ -1,6 +1,19 @@
 # Version 1 of this Quiz Generator will use text-based input and output.
 import sys  # To exit later in program
 
+def startGen():
+    startQuestion = input("Welcome to the Python 3.6 Quiz Generator. Do you want to create a quiz? ")
+    if startQuestion.lower() == "yes" or startQuestion.lower() == "y":
+        # Warns the user of using " or ' punctuation in their answers
+        print("\nWarning: This program will not function correctly if you use the ' symbol, use \ before the symbol.")
+    elif startQuestion.lower() == "no" or startQuestion.lower() == "n":
+        sys.exit()
+    else:
+        print("Sorry, that was not understood")
+        startGen()
+
+startGen()
+
 # This block of code will create the .py file and name it based on user input
 fileName = input("What would you like your file to be named?")  # Takes user input for file name
 createFile = open(fileName + ".py", "w+")  # Creates a .py file in the directory this file is from
@@ -32,7 +45,7 @@ def singleAnswerGen(): # Generates Questions
         fileEdit.write("question" + str(questionNumber) + " = " + 'input(' + "'" + question + "')\n")
         answer = input("What is the answer to your question? ")
         fileEdit.write("if " + "question" + str(questionNumber) + " == " + "'" + answer + "':\n" +
-                       "    print('Correct')\n"+ "else:\n" + "    print('Incorrect')\n")
+                       "    print('Correct')\n" + "else:\n" + "    print('Incorrect')\n")
         questionNumberPlus()
         againCall()
 
@@ -66,6 +79,7 @@ def multiAnswerGen():
         questionNumberPlus()
     againCall()
 
+
 def questionType():
     type = input("\nHow many answers would you like per question? Enter: Single or Multiple ")
     if type.lower() == "one" or type.lower() == "single":
@@ -76,21 +90,8 @@ def questionType():
         print("\nSorry, your input was not understood. Please enter 'Single', 'One', 'Multi', or 'Multiple'. ")
         questionType()
 
+questionType()
 
-def startGen():
-    startQuestion = input("Welcome to the Python 3.6 Quiz Generator. Do you want to create a quiz? ")
-    if startQuestion.lower() == "yes" or startQuestion.lower() == "y":
-        # Warns the user of using " or ' punctuation in their answers
-        print("\nWarning: This program will not function correctly if you use the ' symbol, use \ before the symbol.")
-        questionType()
-    elif startQuestion.lower() == "no" or startQuestion.lower() == "n":
-        sys.exit()
-    else:
-        print("Sorry, that was not understood")
-        startGen()
-
-
-startGen()
-
-# 1.2.1 Release Notes:
-# Fixed ending of warning statement
+# 1.2.2 Release Notes:
+# Removed startGen() and rewrote the starting code so that it confirms the user wants
+# to use the program before creating a quiz
