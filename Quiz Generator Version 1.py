@@ -1,11 +1,12 @@
 # Version 1 of this Quiz Generator will use text-based input and output.
 import sys  # To exit later in program
+
 # This block of code will create the .py file and name it based on user input
 fileName = input("What would you like your file to be named?")  # Takes user input for file name
 createFile = open(fileName + ".py", "w+")  # Creates a .py file in the directory this file is from
 
 # The following will write the base code for a quiz
-fileEdit = createFile
+fileEdit = open(fileName + ".py", "w+")
 questionNumber = 1  # Starts off the question number at 1
 
 
@@ -80,8 +81,7 @@ def startGen():
     startQuestion = input("Welcome to the Python 3.6 Quiz Generator. Do you want to create a quiz? ")
     if startQuestion.lower() == "yes" or startQuestion.lower() == "y":
         # Warns the user of using " or ' punctuation in their answers
-        print("\nWarning: This program will not function correctly if you use the ' symbol, use \ before the symbol."
-              " or ")
+        print("\nWarning: This program will not function correctly if you use the ' symbol, use \ before the symbol.")
         questionType()
     elif startQuestion.lower() == "no" or startQuestion.lower() == "n":
         sys.exit()
@@ -92,9 +92,5 @@ def startGen():
 
 startGen()
 
-# 1.2.0 Release Notes:
-# Added intro to quiz generator
-# Added multiple question function and changed questionGenerator() to singleAnswerGen()
-# Rewrote singleAnswerGen() to work smoother with the rest of the code
-# Added questionType() - so that startGen() does not need to be called except for in the beginning
-# Added againCall() to ask the user if they want to add another question
+# 1.2.1 Release Notes:
+# Fixed ending of warning statement
